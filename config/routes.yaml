@@ -1,3 +1,0 @@
-index:
-    path: /bonjour
-    controller: App\Controller\BonjourController::bonjour
