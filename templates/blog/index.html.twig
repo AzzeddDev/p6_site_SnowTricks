@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+
+    <section class="row articles">
+
+        {% for article in articles %}
+            <article class="col-md-4">
+                <h2>Titre de l'article</h2>
+                <div class="metadata">Ecrit le 10/15/2018 à 19:00 dans la catégorie Politique</div>
+                <div class="content">
+                    <img class="img-fluid" src="https://via.placeholder.com/350x150" alt="">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias eum itaque laboriosam vitae
+                        voluptates?</p>
+                    <p>Ab at consequuntur et, eum quae quo velit. Accusantium earum eos est facilis, ipsa laborum?</p>
+                    <a type="button" class="btn btn-primary" href="{{ path('blog_show') }}">Lire la suite</a>
+                </div>
+            </article>
+        {% endfor %}
+
+    </section>
+
+{% endblock %}
