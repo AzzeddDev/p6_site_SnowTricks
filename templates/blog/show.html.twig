@@ -3,28 +3,11 @@
 {% block body %}
 
     <article class="col-md-12">
-        <h2>Titre de l'article</h2>
-        <div class="metadata">Ecrit le 10/15/2018 à 19:00 dans la catégorie Politique</div>
+        <h2>{{ article.title }}</h2>
+        <div class="metadata">Ecrit le {{ article.createdAt | date ('d/m/y') }} à {{ article.createdAt | date ('H:i') }} dans la catégorie Politique</div>
         <div class="content">
-            <img class="img-fluid" src="https://via.placeholder.com/350x150" alt="">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda debitis ex ipsum totam vel.
-                Laudantium!</p>
-            <p>Consequuntur deleniti eligendi id impedit inventore iure libero quia sint tempora totam! Dolor,
-                repellendus saepe.
-            </p>
-            <hr>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dolores eum explicabo iusto magni
-                quam voluptatibus. Dolore eos nulla porro repellat velit. Architecto asperiores beatae commodi delectus
-                dignissimos distinctio eligendi ex fuga fugit hic iusto nesciunt pariatur, quae qui quidem quis quos
-                ratione saepe sed tempora ullam unde vero vitae.
-            </p>
-            <p>
-                At atque blanditiis consectetur cupiditate iusto pariatur quos repellat rerum? Atque cupiditate dolore
-                fugit in nulla, officiis quidem quis temporibus tenetur voluptates. Ad consequatur cumque libero
-                molestiae nam neque nobis odio reprehenderit. Aut debitis dolores ea itaque nam nemo nesciunt nihil nisi
-                obcaecati placeat, quod suscipit tempora, temporibus velit, veniam.
-            </p>
+            <img class="img-fluid" src="{{ article.image }}" alt="">
+            {{ article.content | raw }}
         </div>
     </article>
 
