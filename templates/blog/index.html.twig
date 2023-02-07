@@ -9,7 +9,7 @@
         {% for article in articles %}
             <article class="d-flex flex-column col-md-4">
                 <h2>{{ article.title }}</h2>
-                <div class="metadata">Ecrit le {{ article.createdAt | date ('d/m/y') }} à {{ article.createdAt | date ('H:i') }} dans la catégorie Politique</div>
+                <div class="metadata">Ecrit le {{ article.createdAt | date ('d/m/y') }} à {{ article.createdAt | date ('H:i') }} dans la catégorie Snowtricks</div>
                 <div class="content">
                     <img class="img-fluid" src="{{ article.image }}" alt="">
                     <p>{{ article.content | raw }}</p>
