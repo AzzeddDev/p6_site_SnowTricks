@@ -4,16 +4,17 @@
 
 {% block body %}
 
-    <section class="row articles">
+    <section class="row g-4 articles pb-5 pt-4">
 
         {% for article in articles %}
-            <article class="col-md-4">
+            <article class="d-flex flex-column col-md-4">
                 <h2>{{ article.title }}</h2>
                 <div class="metadata">Ecrit le {{ article.createdAt | date ('d/m/y') }} à {{ article.createdAt | date ('H:i') }} dans la catégorie Politique</div>
                 <div class="content">
                     <img class="img-fluid" src="{{ article.image }}" alt="">
-                    {{ article.content | raw }}
+                    <p>{{ article.content | raw }}</p>
                     <a type="button" class="btn btn-primary" href="{{ path('blog_show', {'id': article.id}) }}">Lire la suite</a>
+                    <a type="button" class="btn btn-primary" href="{{ path('blog_edit', {'id': article.id}) }}">Editer</a>
                 </div>
             </article>
         {% endfor %}
