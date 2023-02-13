@@ -1,5 +1,14 @@
+.logo-navbar {
+  height: 22px;
+  width: auto;
+}
+
+.text-end {
+  text-align: end;
+}
+
 .link-btn {
-  color: #1b9448;
+  color: #fff;
 }
 
 /*# sourceMappingURL=main.css.map */
