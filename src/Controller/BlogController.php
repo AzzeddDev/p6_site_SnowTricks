@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
