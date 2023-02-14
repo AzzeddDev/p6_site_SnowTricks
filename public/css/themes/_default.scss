@@ -2,3 +2,23 @@
 // When having several themes, this file contains everything related to the
 // default one.
 // -----------------------------------------------------------------------------
+.img-content {
+  border-radius: 8px 8px 0 0;
+}
+
+.content-infos {
+  background-color: rgba(44, 62, 80, 0.08);
+  padding: 18px;
+  border-radius: 0 0 8px 8px;
+}
+
+.title-trick-box {
+  font-size: 20px;
+  font-weight: 600;
+  padding-right: 8px;
+}
+
+.metadata {
+  font-size: 14px;
+  font-weight: 600;
+}

@@ -1,3 +1,50 @@
 // -----------------------------------------------------------------------------
 // This file contains styles that are specific to the home page.
 // -----------------------------------------------------------------------------
+
+// HERO //
+.hero {
+  position: relative;
+  display: flex;
+  background: url("../../img/snow_trick_hero_index.webp") no-repeat center;
+  background-size: cover;
+  height: 100vh;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+  z-index: -2;
+  &:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #000000a8;
+    z-index: -1;
+  }
+}
+
+.title-hero {
+  color: #fff;
+  font-weight: 700;
+  padding-top: 72px;
+}
+
+.btn-down-hero {
+  display: block;
+  position: absolute;
+  background: #fff;
+  height: 50px;
+  width: 50px;
+  bottom: 25px;
+  right: 25px;
+  border-radius: 100%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+
+
+// Display Tricks
+.display-tricks {
+  padding: 72px 0;
+}

@@ -4,3 +4,39 @@
 .link-btn {
   color: #fff;
 }
+
+.btn-delete {
+  background-color: #d8dee2;
+  font-size: 17px;
+  color: #E91F1F;
+  padding: 6px 10px;
+  border-radius: 4px;
+  height: 40px;
+  width: 41px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  &:hover {
+    background-color: #ccd1d7;
+    color: #E91F1F;
+  }
+}
+
+.btn-modify {
+  background-color: #d8dee2;
+  font-size: 17px;
+  color: #2C3E50;
+  padding: 6px 10px;
+  border-radius: 4px;
+  height: 40px;
+  width: 41px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  &:hover {
+    background-color: #ccd1d7;
+    color: #2C3E50;
+  }
+}
