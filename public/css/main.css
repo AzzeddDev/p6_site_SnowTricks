@@ -7,8 +7,120 @@
   text-align: end;
 }
 
+.padding-fixed-navbar-200 {
+  padding: 200px 0;
+}
+
+.padding-fixed-navbar-120 {
+  padding: 120px 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
 .link-btn {
   color: #fff;
+}
+
+.btn-delete {
+  background-color: #d8dee2;
+  font-size: 17px;
+  color: #E91F1F;
+  padding: 6px 10px;
+  border-radius: 4px;
+  height: 40px;
+  width: 41px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.btn-delete:hover {
+  background-color: #ccd1d7;
+  color: #E91F1F;
+}
+
+.btn-modify {
+  background-color: #d8dee2;
+  font-size: 17px;
+  color: #2C3E50;
+  padding: 6px 10px;
+  border-radius: 4px;
+  height: 40px;
+  width: 41px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.btn-modify:hover {
+  background-color: #ccd1d7;
+  color: #2C3E50;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  background: url("../../img/snow_trick_hero_index.webp") no-repeat center;
+  background-size: cover;
+  height: 100vh;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+  z-index: -2;
+}
+.hero:before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6588235294);
+  z-index: -1;
+}
+
+.title-hero {
+  color: #fff;
+  font-weight: 700;
+  padding-top: 72px;
+}
+
+.btn-down-hero {
+  display: block;
+  position: absolute;
+  background: #fff;
+  height: 50px;
+  width: 50px;
+  bottom: 25px;
+  right: 25px;
+  border-radius: 100%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.display-tricks {
+  padding: 72px 0;
+}
+
+.img-content {
+  border-radius: 8px 8px 0 0;
+}
+
+.content-infos {
+  background-color: rgba(44, 62, 80, 0.08);
+  padding: 18px;
+  border-radius: 0 0 8px 8px;
+}
+
+.title-trick-box {
+  font-size: 20px;
+  font-weight: 600;
+  padding-right: 8px;
+}
+
+.metadata {
+  font-size: 14px;
+  font-weight: 600;
 }
 
 /*# sourceMappingURL=main.css.map */
