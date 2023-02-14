@@ -1,17 +1,45 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>bienvenue dans ce blog</h1>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. At autem cumque hic in incidunt perspiciatis quisquam
-        quod reprehenderit? Cupiditate delectus deleniti earum ex, illum quasi quia reiciendis voluptate. Aut autem eius,
-        odio officia placeat possimus reprehenderit voluptas? Deserunt obcaecati, velit?
-    </p>
-    <p>
-        Ad aliquam aliquid aspernatur
-        atque cum eligendi error esse et expedita harum impedit iure iusto magni minus molestias nesciunt odit pariatur
-        porro possimus praesentium provident quam quas quibusdam quidem quo reprehenderit tempore temporibus totam,
-        ullam
-        voluptates? Ad ducimus velit voluptates.
-    </p>
+    
+    <div class="container-fluid p-0">
+        <div class="hero">
+            <div class="col-md-6">
+                <h1 class="title-hero display-3 text-center">Certaines personnes attachent des snowboards à leurs pieds, très peu les attachent à leur âme.</h1>
+            </div>
+            <button class="btn btn-down-hero" href="#down"></button>
+        </div>
+    </div>
+    
+    <div class="container" id="down">
+        <div class="display-tricks">
+
+            <section class="row g-4 articles pb-5 pt-4">
+
+                {% for article in articles %}
+                    <div class="col-md-3">
+                        <a class="d-flex flex-column" href="{{ path('trick_show', {'id': article.id}) }}">
+
+                            <div class="content">
+
+                                <img class="img-content img-fluid" src="{{ article.image }}" alt="">
+
+                                <div class="d-flex content-infos align-items-center">
+                                    <h2 class="title-trick-box pb-1  m-0">{{ article.title }}</h2>
+                                    <div class="d-flex gap-2">
+                                        <a type="button" class="btn btn-modify" href="{{ path('trick_edit', {'id': article.id}) }}"><i class="fa-solid fa-pen"></i></a>
+                                        <a type="button" class="btn btn-delete" href="#"><i class="fa-solid fa-trash"></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+
+                {% endfor %}
+
+            </section>
+
+        </div>
+    </div>
 {% endblock %}
