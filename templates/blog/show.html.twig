@@ -2,15 +2,17 @@
 
 {% block body %}
 
-    <article class="col-md-12">
-        <h2>{{ article.title }}</h2>
-        <div class="metadata">Ecrit le {{ article.createdAt | date ('d/m/y') }} à {{ article.createdAt | date ('H:i') }} dans la catégorie Snowtricks</div>
-        <div class="content">
-            <img class="img-fluid" src="{{ article.image }}" alt="">
-            <p>
-                {{ article.content | raw }}
-            </p>
+    <article class="container">
+        <div class="padding-fixed-navbar-200">
+            <h2>{{ article.title }}</h2>
+            <div class="metadata">Ecrit le {{ article.createdAt | date ('d/m/y') }} à {{ article.createdAt | date ('H:i') }} dans la catégorie Snowtricks</div>
+            <div class="content">
+                <img class="img-fluid" src="{{ article.image }}" alt="">
+                <p>
+                    {{ article.content | raw }}
+                </p>
 
+            </div>
         </div>
     </article>
 
