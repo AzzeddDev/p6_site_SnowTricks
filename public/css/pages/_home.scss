@@ -30,9 +30,10 @@
 }
 
 .btn-down-hero {
-  display: block;
+  display: flex;
   position: absolute;
   background: #fff;
+  color: #2c3e50;
   height: 50px;
   width: 50px;
   bottom: 25px;
@@ -40,6 +41,31 @@
   border-radius: 100%;
   cursor: pointer;
   z-index: 2;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background: #e2e3ea;
+  }
+}
+
+.btn-up-hero {
+  display: flex;
+  position: absolute;
+  background: #2c3e50;
+  color: #fff;
+  height: 50px;
+  width: 50px;
+  bottom: 25px;
+  right: 25px;
+  border-radius: 100%;
+  cursor: pointer;
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background: #17212c;
+    color: #fff;
+  }
 }
 
 
