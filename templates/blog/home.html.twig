@@ -2,43 +2,49 @@
 
 {% block body %}
     
-    <div class="container-fluid p-0">
+    <div class="container-fluid position-relative p-0" id="up">
         <div class="hero">
             <div class="col-md-6">
                 <h1 class="title-hero display-3 text-center">Certaines personnes attachent des snowboards à leurs pieds, très peu les attachent à leur âme.</h1>
             </div>
-            <button class="btn btn-down-hero" href="#down"></button>
         </div>
+        <a class="btn btn-down-hero" href="#down"><i class="fa-solid fa-arrow-down"></i></a>
     </div>
     
-    <div class="container" id="down">
-        <div class="display-tricks">
+    <div class="container-fluid" >
+        <div class="display-tricks position-relative" id="down">
 
-            <section class="row g-4 articles pb-5 pt-4">
+            <section class="container">
+                
+                <div class="row g-4 articles pb-5 pt-4">
 
-                {% for article in articles %}
-                    <div class="col-md-3">
-                        <a class="d-flex flex-column" href="{{ path('trick_show', {'id': article.id}) }}">
+                    {% for article in articles %}
+                        <div class="col-md-3">
+                            <a class="d-flex flex-column" href="{{ path('trick_show', {'id': article.id}) }}">
 
-                            <div class="content">
+                                <div class="content">
 
-                                <img class="img-content img-fluid" src="{{ article.image }}" alt="">
+                                    <img class="img-content img-fluid" src="{{ article.image }}" alt="">
 
-                                <div class="d-flex content-infos align-items-center">
-                                    <h2 class="title-trick-box pb-1  m-0">{{ article.title }}</h2>
-                                    <div class="d-flex gap-2">
-                                        <a type="button" class="btn btn-modify" href="{{ path('trick_edit', {'id': article.id}) }}"><i class="fa-solid fa-pen"></i></a>
-                                        <a type="button" class="btn btn-delete" href="#"><i class="fa-solid fa-trash"></i></a>
+                                    <div class="d-flex content-infos align-items-center">
+                                        <h2 class="title-trick-box pb-1  m-0">{{ article.title }}</h2>
+                                        <div class="d-flex gap-2">
+                                            <a type="button" class="btn btn-modify" href="{{ path('trick_edit', {'id': article.id}) }}"><i class="fa-solid fa-pen"></i></a>
+                                            <a type="button" class="btn btn-delete" href="#"><i class="fa-solid fa-trash"></i></a>
+                                        </div>
                                     </div>
+
                                 </div>
+                            </a>
+                        </div>
 
-                            </div>
-                        </a>
-                    </div>
+                    {% endfor %}
 
-                {% endfor %}
+                </div>
 
             </section>
+
+            <a class="btn btn-up-hero" href="#up"><i class="fa-solid fa-arrow-up"></i></a>
 
         </div>
     </div>
