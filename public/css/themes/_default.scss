@@ -7,7 +7,7 @@
 }
 
 .content-infos {
-  background-color: rgba(44, 62, 80, 0.08);
+  background-color: $bg-light;
   padding: 18px;
   border-radius: 0 0 8px 8px;
 }
@@ -16,9 +16,17 @@
   font-size: 20px;
   font-weight: 600;
   padding-right: 8px;
+  text-decoration: none;
 }
 
 .metadata {
   font-size: 14px;
   font-weight: 600;
+}
+
+.btn-blue {
+  color: $primary;
+  &:hover {
+    color: $secondary;
+  }
 }

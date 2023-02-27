@@ -128,12 +128,75 @@ body {
   padding: 72px 0;
 }
 
+.bg-trick {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background: url("../../img/snow_trick_hero_index.webp") no-repeat center;
+  background-size: cover;
+  z-index: -2;
+  margin: 0;
+  padding: 0;
+}
+.bg-trick:before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6588235294);
+  z-index: -1;
+}
+.bg-trick:after {
+  content: "";
+  position: absolute;
+  height: 400px;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.25) 25%, rgba(255, 255, 255, 0.75) 50%, rgb(255, 255, 255) 95%);
+  z-index: -1;
+  bottom: 0;
+}
+
+.bg-trick-content {
+  background-color: #EEF0F1;
+  border-radius: 8px;
+  box-shadow: 0 0 80px rgba(5, 11, 17, 0.3215686275);
+}
+
+.pad-content {
+  padding: 50px;
+}
+
+.img-title-box {
+  display: flex;
+  position: relative;
+  height: 600px;
+  width: auto;
+  background: url("../../img/two_skiers_standing_together.webp") no-repeat center;
+  background-size: cover;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  border-radius: 8px 8px 0 0;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+}
+.img-title-box:before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6588235294);
+  z-index: -1;
+  border-radius: 8px 8px 0 0;
+}
+
 .img-content {
   border-radius: 8px 8px 0 0;
 }
 
 .content-infos {
-  background-color: rgba(44, 62, 80, 0.08);
+  background-color: #EEF0F1;
   padding: 18px;
   border-radius: 0 0 8px 8px;
 }
@@ -142,11 +205,19 @@ body {
   font-size: 20px;
   font-weight: 600;
   padding-right: 8px;
+  text-decoration: none;
 }
 
 .metadata {
   font-size: 14px;
   font-weight: 600;
+}
+
+.btn-blue {
+  color: #2C3E50;
+}
+.btn-blue:hover {
+  color: #13967D;
 }
 
 /*# sourceMappingURL=main.css.map */
