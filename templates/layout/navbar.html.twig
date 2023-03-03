@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary py-3 fixed-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-self-center py-0" href="{{ path('home') }}">
+            <img class="logo-navbar" src="{{ asset('img/logo-white.svg') }}" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end text-end" id="navbarColor01">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('tricks') }}">Tricks</a>
+                </li>
+
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('trick_create') }}">Add trick</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('security_login') }}">Sign in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('signup') }}">Sign up</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
