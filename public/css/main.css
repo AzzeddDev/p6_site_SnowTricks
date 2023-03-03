@@ -191,6 +191,35 @@ body {
   border-radius: 8px 8px 0 0;
 }
 
+.category {
+  color: #13967D;
+}
+
+.user-picture {
+  background-color: #13967D;
+  height: 50px;
+  width: 53px;
+  border-radius: 100%;
+}
+
+.comment {
+  background-color: #fff;
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
+.author {
+  font-weight: 600;
+  color: #13967D;
+}
+
+.date-comment {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #cfd0d3;
+}
+
 .img-content {
   border-radius: 8px 8px 0 0;
 }

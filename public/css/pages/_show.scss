@@ -61,3 +61,37 @@
     border-radius: 8px 8px 0 0;
   }
 }
+
+.category {
+  color: $secondary;
+}
+
+
+
+
+// Comment section
+
+.user-picture {
+  background-color: $secondary;
+  height: 50px;
+  width: 53px;
+  border-radius: 100%;
+}
+
+.comment {
+  background-color: #fff;
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
+.author {
+  font-weight: 600;
+  color: $secondary;
+}
+
+.date-comment {
+  font-size: .825rem;
+  font-weight: 600;
+  color: #cfd0d3;
+}
