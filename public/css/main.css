@@ -200,8 +200,6 @@ h1 {
   position: relative;
   height: 600px;
   width: auto;
-  background: url("../../img/two_skiers_standing_together.webp") no-repeat center;
-  background-size: cover;
   z-index: 2;
   margin: 0;
   padding: 0;
