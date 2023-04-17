@@ -4,12 +4,24 @@
 // -----------------------------------------------------------------------------
 .img-content {
   border-radius: 8px 8px 0 0;
+  height: 190px;
+  object-fit: cover;
+}
+
+.images-tricks {
+  height: 135px;
+  object-fit: cover;
 }
 
 .content-infos {
   background-color: $bg-light;
   padding: 18px;
   border-radius: 0 0 8px 8px;
+}
+
+.title-default {
+  font-size: 1.255rem;
+  font-weight: 600;
 }
 
 .title-trick-box {

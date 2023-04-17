@@ -40,3 +40,27 @@
     color: #2C3E50;
   }
 }
+
+.btn-muted {
+  background-color: #d8dee2;
+  font-size: 17px;
+  color: #b0b5b6;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border-color: #d8dee2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: not-allowed;
+  &:hover {
+    background-color: #d8dee2;
+    color: #b6b8b9;
+  }
+}
+
+.btn-check:checked + .btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check) + .btn:active {
+  color: #b6b8b9;
+  background-color: #d8dee2;
+  border-color: #d8dee2;
+}

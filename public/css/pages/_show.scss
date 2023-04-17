@@ -72,10 +72,15 @@
 // Comment section
 
 .user-picture {
+  display: flex;
   background-color: $secondary;
   height: 50px;
   width: 53px;
   border-radius: 100%;
+  font-weight: 700;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
 }
 
 .comment {
@@ -94,4 +99,10 @@
   font-size: .825rem;
   font-weight: 600;
   color: #cfd0d3;
+}
+
+.bc-not-allowed {
+  background-color: $secondary;
+  padding: 50px;
+  border-radius: 4px;
 }
