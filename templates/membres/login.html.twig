@@ -9,20 +9,23 @@
                 <div class="d-flex justify-content-center">
                     <div class="col-md-4">
 
-                        <h1>Se connecter</h1>
+                        <h1>Login</h1>
 
-                        <form action="{{ path('security_login') }}" method="post">
+                        <form class="mb-3" action="{{ path('security_login') }}" method="post">
                             <div class="mb-3">
                                 <label for="InputEmail1" class="form-label">Email address</label>
-                                <input class="form-control" type="email" required name="_username" placeholder="Votre email" id="InputEmail1" aria-describedby="emailHelp">
+                                <input class="form-control" type="email" required name="_username" placeholder="Your Email" id="InputEmail1" aria-describedby="emailHelp">
                             </div>
 
                             <div class="mb-3">
                                 <label for="InputPassword1" class="form-label">Password</label>
-                                <input class="form-control" type="password" required name="_password" placeholder="Votre mot de passe" id="InputPassword1">
+                                <input class="form-control" type="password" required name="_password" placeholder="Your Password" id="InputPassword1">
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <a class="btn btn-primary" href="/reset-password">Forgot Password ?</a>
+                            </div>
                         </form>
                     </div>
                 </div>
