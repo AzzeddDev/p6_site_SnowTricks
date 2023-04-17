@@ -21,9 +21,9 @@
                                 {% for image in article.images %}
                                     <div class="col">
                                         <img class="images-tricks img-fluid mb-2" src="{{ asset('/img/uploads/images_tricks/' ~ image.link) }}" alt="">
-                                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                                            <a type="button" class="btn btn-delete" href="#"><i class="fa-solid fa-trash"></i></a>
-                                        {% endif %}
+{#                                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}#}
+{#                                            <a type="button" class="btn btn-delete" href="#"><i class="fa-solid fa-trash"></i></a>#}
+{#                                        {% endif %}#}
                                     </div>
                                 {% endfor %}
                             </div>
