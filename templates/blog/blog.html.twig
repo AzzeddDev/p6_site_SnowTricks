@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Blog{% endblock %}
+{% set page_title = 'Blog Tricks' %}
 
 {% block body %}
 
@@ -15,16 +15,19 @@
 
                         <div class="content">
 
-                            <img class="img-content img-fluid" src="{{ article.image }}" alt="">
+                            <img class="img-content img-fluid w-100" src="{{ asset('/img/uploads/bg_trick/' ~ article.featuredImg) }}" alt="">
 
                             <div class="content-infos">
                                 <h2 class="title-trick-box pb-1  m-0">{{ article.title }}</h2>
-                                <div class="metadata mb-3">Ecrit le {{ article.createdAt | date ('d/m/y') }} à {{ article.createdAt | date ('H:i') }} dans la catégorie Snowtricks</div>
-                                <a type="button" class="btn btn-primary" href="{{ path('trick_show', {'id': article.id}) }}">Lire la suite</a>
-                                <a type="button" class="btn btn-primary" href="{{ path('trick_edit', {'id': article.id}) }}">Editer</a>
+                                <div class="metadata mb-3">Ecrit le {{ article.createdAt | date ('d/m/y') }} à {{ article.createdAt | date ('H:i') }} dans la catégorie {{ article.category.title }}</div>
+                                <a type="button" class="btn btn-primary" href="{{ path('trick_show', {'title': article.title}) }}">Lire la suite</a>
+                                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                    <a type="button" class="btn btn-primary" href="{{ path('trick_edit', {'title': article.title}) }}">Editer</a>
+                                {% endif %}
                             </div>
 
                         </div>
+
                     </article>
                 {% endfor %}
 
