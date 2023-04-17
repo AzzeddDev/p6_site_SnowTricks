@@ -6,10 +6,13 @@ use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ * @UniqueEntity("title")
  */
 class Article
 {
@@ -20,24 +23,23 @@ class Article
      */
     private $id;
 
-    //* @Assert\Length(min=10, max=25, minMessage="Votre titre doit contenir minimum 10 charachters") --> for title min length 10 max 25 words
+
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $title;
 
 
-    //@Assert\Length(min=255) --> for minimum 255 words
+
     /**
      * @ORM\Column(type="text")
      */
     private $content;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Url()
+     * @ORM\OneToMany(targetEntity=Images::Class, mappedBy="article", cascade={"all"})
      */
-    private $image;
+    private Collection $images;
 
     /**
      * @ORM\Column(type="datetime")
@@ -51,19 +53,25 @@ class Article
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article", orphanRemoval=true, cascade={"all"})
      */
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="article")
+     * @ORM\Column(type="string", length=255)
      */
-    private $images_id;
+    private $featured_img;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Videos::class, mappedBy="ArticleId", cascade={"all"})
+     */
+    private $videos;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
-        $this->images_id = new ArrayCollection();
+        $this->images = new ArrayCollection();
+        $this->videos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -95,17 +103,27 @@ class Article
         return $this;
     }
 
-    public function getImage(): ?string
+    /**
+     * @return Collection
+     */
+    public function getImages(): Collection
     {
-        return $this->image;
+        return $this->images;
     }
 
-    public function setImage(string $image): self
+    /**
+     * @param Collection $images
+     * @return Article
+     */
+    public function setImages(Collection $images): Article
     {
-        $this->image = $image;
-
+        $this->images = $images;
         return $this;
     }
+
+
+
+
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
@@ -161,30 +179,43 @@ class Article
         return $this;
     }
 
-    /**
-     * @return Collection<int, Images>
-     */
-    public function getImagesId(): Collection
+    public function getFeaturedImg(): ?string
     {
-        return $this->images_id;
+        return $this->featured_img;
     }
 
-    public function addImagesId(Images $imagesId): self
+    public function setFeaturedImg(string $featured_img): self
     {
-        if (!$this->images_id->contains($imagesId)) {
-            $this->images_id[] = $imagesId;
-            $imagesId->setArticle($this);
+        $this->featured_img = $featured_img;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Videos>
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(Videos $video): self
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos[] = $video;
+            $video->setArticleId($this);
+            $this->videos->add($video);
         }
 
         return $this;
     }
 
-    public function removeImagesId(Images $imagesId): self
+    public function removeVideo(Videos $video): self
     {
-        if ($this->images_id->removeElement($imagesId)) {
+        if ($this->videos->removeElement($video)) {
             // set the owning side to null (unless already changed)
-            if ($imagesId->getArticle() === $this) {
-                $imagesId->setArticle(null);
+            if ($video->getArticleId() === $this) {
+                $video->setArticleId(null);
             }
         }
 
