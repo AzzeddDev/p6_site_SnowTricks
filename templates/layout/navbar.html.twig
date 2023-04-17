@@ -15,7 +15,7 @@
                     <a class="nav-link" href="{{ path('tricks') }}">Tricks</a>
                 </li>
 
-                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('trick_create') }}">Add trick</a>
                     </li>
@@ -25,10 +25,10 @@
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('security_login') }}">Sign in</a>
+                        <a class="nav-link" href="{{ path('signup') }}">Sign up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('signup') }}">Sign up</a>
+                        <a class="nav-link" href="{{ path('security_login') }}">Login</a>
                     </li>
                 {% endif %}
             </ul>
