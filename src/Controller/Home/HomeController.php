@@ -21,7 +21,7 @@ class HomeController extends AbstractController
         }
         $articles = $repo->findArticlePaginated($page);
 
-        return $this->render('blog/home.html.twig', [
+        return $this->render('home/home.html.twig', [
             'articles' => $articles,
             'page' => $page,
         ]);
