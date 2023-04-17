@@ -1,0 +1,168 @@
+{% extends 'base.html.twig' %}
+
+{% set page_title = 'Modifier ou ajouter un trick' %}
+
+{% block body %}
+
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+        <article class="container-fluid m-0 p-0">
+            <div class="bg-trick"></div>
+            <div class="container">
+                <div class="d-flex justify-content-center padding-fixed-navbar-200">
+                    <div class="bg-trick-content  col-12">
+
+                        <div class="img-title-box">
+                            {% if editMode %}
+                                <h2>{{ article.title }}</h2>
+                            {% else %}
+                                <h2>Ajouter un trick</h2>
+                            {% endif %}
+                        </div>
+
+                        <div class="pad-content">
+
+
+                                <div class="row mb-3">
+                                    {% for image in article.images %}
+                                        <div class="col-2">
+                                            <img class="img-fluid mb-2" src="{{ asset('/img/uploads/images_tricks/' ~ image.link) }}" alt="">
+                                            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                <div class="d-flex gap-2 justify-content-end">
+                                                    <a type="button" class="btn btn-modify" href="#"><i class="fa-solid fa-pen"></i></a>
+                                                    <a type="button" class="btn btn-delete" href="#"><i class="fa-solid fa-trash"></i></a>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                            <div class="d-flex justify-content-center py-5 pb-3">
+                                <div class="col-md-6">
+                                    {{ form_start(formArticle) }}
+
+                                    {{ form_row(formArticle.title, {
+                                        'attr': {
+                                            'placeholder' : "Titre de l'article",
+                                            'label' : 'Titre'
+                                        }
+                                    }) }}
+                                    {{ form_errors(formArticle.title) }}
+
+                                    <div id="TitleHelp" class="form-text mb-3">Votre titre doit contenir en moin 10
+                                        caractères.
+                                    </div>
+
+                                    {{ form_row(formArticle.category) }}
+
+                                    {{ form_errors(formArticle.category) }}
+
+                                    {{ form_row(formArticle.content, {'attr': {'label': "titre"}}) }}
+
+                                    {{ form_errors(formArticle.content) }}
+                                    <div class="">
+                                        <label for="article_img">Featured image</label>
+                                        {{ form_row(formArticle.featured_img) }}
+                                    </div>
+
+                                    <div class="">
+                                        <label for="article_img">Download images</label>
+                                        {{ form_row(formArticle.image) }}
+                                    </div>
+                                    {{ form_errors(formArticle.image) }}
+
+                                    {{ form_label(formArticle.videos) }}
+                                    {{ form_errors(formArticle.videos) }}
+
+                                    <ul     class="videos"
+                                            data-index="{{ formArticle.videos|length > 0 ? formArticle.videos|last.vars.name + 1 : 0 }}"
+                                            data-prototype="{{ form_widget(formArticle.videos.vars.prototype)|e('html_attr') }}"
+                                    >
+                                        {% for videosField in formArticle.videos %}
+                                            <li>
+                                                {{ form_row(videosField) }}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+
+                                    <button type="button" class="add_item_link" data-collection-holder-class="videos">Add a videos</button>
+
+                                    <script>
+
+                                        const addTagFormDeleteLink = (item) => {
+                                            const removeFormButton = document.createElement('button');
+                                            removeFormButton.innerText = 'Delete this tag';
+
+                                            item.append(removeFormButton);
+
+                                            removeFormButton.addEventListener('click', (e) => {
+                                                e.preventDefault();
+                                                // remove the li for the tag form
+                                                item.remove();
+                                            });
+                                        }
+
+                                        const addFormToCollection = (e) => {
+                                            const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+
+                                            const item = document.createElement('li');
+
+                                            item.innerHTML = collectionHolder
+                                                .dataset
+                                                .prototype
+                                                .replace(
+                                                    /__name__/g,
+                                                    collectionHolder.dataset.index
+                                                );
+
+                                            collectionHolder.appendChild(item);
+
+                                            collectionHolder.dataset.index++;
+
+                                            addTagFormDeleteLink(item);
+                                        };
+
+                                        document
+                                            .querySelectorAll('.add_item_link')
+                                            .forEach(btn => {
+                                                btn.addEventListener("click", addFormToCollection)
+                                            });
+                                        document
+                                            .querySelectorAll('ul.videos li')
+                                            .forEach((video) => {
+                                                addTagFormDeleteLink(video)
+                                            });
+
+                                    </script>
+
+                                    <div class="d-flex justify-content-end gap-3">
+                                        {% if editMode %}
+                                            <button type="submit" class="btn btn-success">
+                                                Sauvegarder
+                                            </button>
+                                            <button type="submit" class="btn btn-danger">
+                                                Delete
+                                            </button>
+                                        {% else %}
+                                            <button type="submit" class="btn btn-success">
+                                                Ajouter l'article
+                                            </button>
+                                        {% endif %}
+                                    </div>
+
+                                    {{ form_end(formArticle) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    {% else %}
+
+        {{ include ('error/error.html.twig') }}
+
+    {% endif %}
+
+{% endblock %}
