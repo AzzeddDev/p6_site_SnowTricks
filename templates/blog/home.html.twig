@@ -1,40 +1,46 @@
 {% extends 'base.html.twig' %}
 
+{% set page_title = 'Bienvenue dans notre site' %}
+
 {% block body %}
     
-    <div class="container-fluid position-relative p-0" id="up">
+    <div class="container-fluid position-relative p-0">
         <div class="hero">
             <div class="col-md-6">
                 <h1 class="title-hero display-3 text-center">Certaines personnes attachent des snowboards à leurs pieds, très peu les attachent à leur âme.</h1>
             </div>
         </div>
-        <a class="btn btn-down-hero" href="#down"><i class="fa-solid fa-arrow-down"></i></a>
+        <a class="btn btn-down-hero" href="#tricks"><i class="fa-solid fa-arrow-down"></i></a>
     </div>
     
     <div class="container-fluid" >
-        <div class="display-tricks position-relative" id="down">
+        <div class="display-tricks position-relative" id="tricks">
 
             <section class="container">
                 
-                <div class="row g-4 articles pb-5 pt-4">
+                <div class="row g-4 pt-4 mb-3">
 
                     {% for article in articles %}
+
                         <div class="col-md-3">
-                            <a class="d-flex flex-column" href="{{ path('trick_show', {'id': article.id}) }}">
+                            <a class="d-flex flex-column text-decoration-none btn-blue" href="{{ path('trick_show', {'title': article.title}) }}">
 
                                 <div class="content">
 
-                                    <img class="img-content img-fluid" src="{{ article.image }}" alt="">
+                                    <img class="img-content img-fluid w-100" src="{{ asset('/img/uploads/bg_trick/' ~ article.featuredImg) }}" alt="">
 
-                                    <div class="d-flex content-infos align-items-center">
+                                    <div class="d-flex content-infos align-items-center justify-content-between">
                                         <h2 class="title-trick-box pb-1  m-0">{{ article.title }}</h2>
-                                        <div class="d-flex gap-2">
-                                            <a type="button" class="btn btn-modify" href="{{ path('trick_edit', {'id': article.id}) }}"><i class="fa-solid fa-pen"></i></a>
-                                            <a type="button" class="btn btn-delete" href="#"><i class="fa-solid fa-trash"></i></a>
-                                        </div>
+                                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                            <div class="d-flex gap-2">
+                                                <a type="button" class="btn btn-modify" href="{{ path('trick_edit', {'title': article.title}) }}"><i class="fa-solid fa-pen"></i></a>
+                                                <a type="button" class="btn btn-delete" href="{{ path('trick_delete', {'title': article.title}) }}" onclick="return confirm('Attention ceci va suprimer le trick !')"><i class="fa-solid fa-trash"></i></a>
+                                            </div>
+                                        {% endif %}
                                     </div>
 
                                 </div>
+
                             </a>
                         </div>
 
@@ -42,9 +48,25 @@
 
                 </div>
 
+
+                <div class="row">
+                    <div class="col-6 d-flex justify-content-end">
+                        {% if page > 1 %}
+                            <a class="btn btn-primary" href="{{ path('home', {'page': page - 1}) }}">Page precedent</a>
+                        {% endif %}
+                    </div>
+                    <div class="col-6 d-flex justify-content-start">
+                        {% if articles.count > page * 10 %}
+                            <a class="btn btn-primary" href="{{ path('home', {'page': page + 1}) }}">Page suivante</a>
+                        {% else %}
+                            <a class="btn btn-muted">Page suivante</a>
+                        {% endif %}
+                    </div>
+                </div>
+
             </section>
 
-            <a class="btn btn-up-hero" href="#up"><i class="fa-solid fa-arrow-up"></i></a>
+            <a class="btn btn-up-hero" href="#tricks"><i class="fa-solid fa-arrow-up"></i></a>
 
         </div>
     </div>
