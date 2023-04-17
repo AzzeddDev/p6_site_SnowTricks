@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% set page_title = article.title %}
+
 {% block body %}
 
     <article class="container-fluid m-0 p-0">
@@ -7,55 +9,29 @@
         <div class="container">
             <div class="d-flex justify-content-center padding-fixed-navbar-200">
                 <div class="bg-trick-content col-12">
-                    
+
                     <div class="img-title-box">
                         <h2>{{ article.title }}</h2>
                     </div>
-                    
+
                     <div class="pad-content">
 
-                        <div class="row mb-3">
-                            <div class="col-2">
-                                <img class="img-fluid mb-2" src="{{ article.image }}" alt="">
-                                <div class="d-flex gap-2 justify-content-end">
-                                    <a type="button" class="btn btn-modify" href="#"><i class="fa-solid fa-pen"></i></a>
-                                    <a type="button" class="btn btn-delete" href="#"><i class="fa-solid fa-trash"></i></a>
-                                </div>
+                        <div class="row">
+                            <div class="col-6 row mb-3">
+                                {% for image in article.images %}
+                                    <div class="col">
+                                        <img class="images-tricks img-fluid mb-2" src="{{ asset('/img/uploads/images_tricks/' ~ image.link) }}" alt="">
+                                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                            <a type="button" class="btn btn-delete" href="#"><i class="fa-solid fa-trash"></i></a>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
                             </div>
-                            <div class="col-2">
-                                <img class="img-fluid mb-2" src="{{ article.image }}" alt="">
-                                <div class="d-flex gap-2 justify-content-end">
-                                    <a type="button" class="btn btn-modify" href="#"><i class="fa-solid fa-pen"></i></a>
-                                    <a type="button" class="btn btn-delete" href="#"><i class="fa-solid fa-trash"></i></a>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <img class="img-fluid mb-2" src="{{ article.image }}" alt="">
-                                <div class="d-flex gap-2 justify-content-end">
-                                    <a type="button" class="btn btn-modify" href="#"><i class="fa-solid fa-pen"></i></a>
-                                    <a type="button" class="btn btn-delete" href="#"><i class="fa-solid fa-trash"></i></a>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <img class="img-fluid mb-2" src="{{ article.image }}" alt="">
-                                <div class="d-flex gap-2 justify-content-end">
-                                    <a type="button" class="btn btn-modify" href="#"><i class="fa-solid fa-pen"></i></a>
-                                    <a type="button" class="btn btn-delete" href="#"><i class="fa-solid fa-trash"></i></a>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <img class="img-fluid mb-2" src="{{ article.image }}" alt="">
-                                <div class="d-flex gap-2 justify-content-end">
-                                    <a type="button" class="btn btn-modify" href="#"><i class="fa-solid fa-pen"></i></a>
-                                    <a type="button" class="btn btn-delete" href="#"><i class="fa-solid fa-trash"></i></a>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <img class="img-fluid mb-2" src="{{ article.image }}" alt="">
-                                <div class="d-flex gap-2 justify-content-end">
-                                    <a type="button" class="btn btn-modify" href="#"><i class="fa-solid fa-pen"></i></a>
-                                    <a type="button" class="btn btn-delete" href="#"><i class="fa-solid fa-trash"></i></a>
-                                </div>
+
+                            <div class="col-6 row">
+                                {% for video in article.videos %}
+                                    <iframe class="col-4" src="{{ video.linkVideos }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                {% endfor %}
                             </div>
                         </div>
 
@@ -70,12 +46,16 @@
 
                         <div class="d-flex justify-content-center" id="commentaires">
                             <div class="col-md-10">
-                                {% for comment in article.comments %}
+                                <h2 class="title-default">Commentaires :</h2>
+                                {% for comment in comments %}
                                     <div class="d-flex gap-3">
-                                        <div class="user-picture"></div>
+                                        <div class="user-picture">
+                                            {{ comment.author.name|first }}
+                                        </div>
+{#                                        {{ dump(comment) }}#}
                                         <div class="comment w-100">
                                             <div class="author">
-                                                {{ comment.author }}
+                                                {{ comment.author.name }}
                                             </div>
 
                                             <div class="col">
@@ -91,6 +71,35 @@
                                         </div>
                                     </div>
                                 {% endfor %}
+
+                                <div class="row">
+                                    <div class="col-6 d-flex justify-content-end">
+                                        {% if page > 1 %}
+                                            <a class="btn btn-primary" href="{{ path('trick_show', {'page': page - 1, 'title': article.title}) }}">Page precedent</a>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-6 d-flex justify-content-start">
+                                        {% if comments.count > page * 5 %}
+                                            <a class="btn btn-primary" href="{{ path('trick_show', {'page': page + 1, 'title': article.title}) }}">Page suivante</a>
+                                        {% else %}
+                                            <a class="btn btn-muted">Page suivante</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                    {{ form_start(commentForm) }}
+
+                                    {{  form_row(commentForm.content) }}
+                                    <button type="submit" class="btn btn-success">Envoyer</button>
+                                    {{  form_end(commentForm) }}
+
+                                {% else %}
+                                    <div class="d-flex justify-content-center align-items-center bc-not-allowed mt-3">
+                                        <h2 class="title-default text-white">Vous devez être connecté pour laisser un commentaire</h2>
+                                    </div>
+                                {% endif %}
+
                             </div>
                         </div>
 
