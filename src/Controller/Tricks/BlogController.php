@@ -27,6 +27,7 @@ class BlogController extends AbstractController
      */
     public function show(Article $article, CommentRepository $repo, Request $request, EntityManagerInterface $manager): Response {
 
+        //Créer un nouveau commentaire
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
 
@@ -43,6 +44,7 @@ class BlogController extends AbstractController
             return $this->redirectToRoute('trick_show', ['title' => $article->getTitle()]);
         }
 
+        //Pagination des commentaires
         $page = $request->query->get('page');
         if ($page === null) {
             $page = 1;
