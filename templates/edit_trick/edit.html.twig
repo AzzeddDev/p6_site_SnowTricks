@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% set page_title = 'Modifier ou ajouter un trick' %}
+
+{% block body %}
+
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+        <article class="container-fluid m-0 p-0">
+            <div class="bg-trick"></div>
+            <div class="container">
+                <div class="d-flex justify-content-center padding-fixed-navbar-200">
+                    <div class="bg-trick-content  col-12">
+
+                        <div class="img-title-box">
+                            <h2>{{ article.title }}</h2>
+                        </div>
+
+                        <div class="pad-content">
+                                <div class="row mb-3">
+                                    <div class="col-2">
+                                        {#                                        <img class="img-fluid mb-2" src="{{ asset('/img/uploads/images_tricks/' ~ image.link) }}" alt="">#}
+                                        <div class="d-flex gap-2 justify-content-end">
+                                            <a type="button" class="btn btn-modify" href="#"><i class="fa-solid fa-pen"></i></a>
+                                            <a type="button" class="btn btn-delete" href="#"><i class="fa-solid fa-trash"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <div class="d-flex justify-content-center py-5 pb-3">
+                                <div class="col-md-6">
+                                    {{ form_start(formArticle) }}
+
+                                    {{ form_row(formArticle.title, {'attr': {'placeholder' : "Titre de l'article"}}) }}
+                                    {{ form_errors(formArticle.title) }}
+
+                                    <div id="TitleHelp" class="form-text mb-3">Votre titre doit contenir en moin 10
+                                        caractères.
+                                    </div>
+
+                                    {{ form_row(formArticle.category) }}
+                                    {{ form_errors(formArticle.category) }}
+
+
+
+                                    {{ form_row(formArticle.content, {'attr': {'placeholder' : "Contenu de l'article"}}) }}
+                                    {{ form_errors(formArticle.content) }}
+                                    <div class="">
+                                        <label for="article_img">Featured image</label>
+                                        {{ form_row(formArticle.featured_img) }}
+                                    </div>
+
+                                    <div class="">
+                                        <label for="article_img">Download images</label>
+                                        {{ form_row(formArticle.image) }}
+                                    </div>
+                                    {{ form_errors(formArticle.image) }}
+
+
+                                    {{ form_row(formArticle.videos) }}
+
+
+                                    <div class="d-flex justify-content-end gap-3">
+                                        <button type="submit" class="btn btn-success">
+                                            Sauvegarder
+                                        </button>
+                                        <button type="submit" class="btn btn-danger">
+                                            Delete
+                                        </button>
+                                    </div>
+
+                                    {{ form_end(formArticle) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    {% else %}
+
+        {{ include ('error/error.html.twig') }}
+
+    {% endif %}
+
+{% endblock %}
