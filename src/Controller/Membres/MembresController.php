@@ -58,22 +58,4 @@ class MembresController extends AbstractController
     public function logout() {
         throw new \Exception('Don\'t forget to activate logout in security.yaml');
     }
-
-    /**
-     * @Route("/envoi", name="app_loggin_user")
-     * @param MailerInterface $mailer
-     * @return Response
-     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
-     */
-    public function sendEmail(MailerInterface $mailer): Response
-    {
-        $email = (new Email())
-            ->from('azzeddine@example.com')
-            ->to('damien@example.com')
-            ->subject('Test e-mail')
-            ->text('Ceci est un test');
-
-        $mailer->send($email);
-        return new Response();
-    }
 }
